@@ -10,4 +10,16 @@ export class ProductService {
   findAll(): ProductDto[] {
     return this.products;
   }
+  findByid(id: string): ProductDto {
+    const found = this.products.filter((product) => product.id === id);
+    return found[0];
+  }
+  update(id: string, product: ProductDto) {
+    const indexProduct = this.products.findIndex(
+      (product) => product.id === id,
+    );
+    if (indexProduct) {
+      this.products[indexProduct] = product;
+    }
+  }
 }
